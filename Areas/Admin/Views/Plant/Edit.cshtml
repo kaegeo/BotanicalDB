@@ -1,0 +1,93 @@
+﻿@{
+     /*
+     * Brett Fowler
+     * Course CPT-231-424 - C# Programming II
+     * Module 12 Assignnent
+     * 2023 Fall
+     */
+}
+
+@model Plant
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form class="m-3" asp-action="Edit" method="post">
+    <div class="row mb-3">
+        <label class="col-md-2 pt-2 form-label" asp-for="PlantName">Plant Name</label>
+        <div class="col-md-6">
+            <input class="form-control" asp-for="PlantName" />
+        </div>
+        @{/* Asp-validation-for used to generate error text */}
+        <label class="mt-md-2 mb-md-1 mt-sm-0 mb-sm-2 col-md-4 col-sm-12 text-danger"><span asp-validation-for="PlantName"></span></label>
+    </div>
+    <div class="row mb-3">
+        <label class="col-md-2 pt-2 form-label" asp-for="PlantType">Type</label>
+        <div class="col-md-6">
+            <select asp-for="PlantType" class="form-select">
+                <option value="No ID">No ID</option>
+                <option value="Species">Species</option>
+                <option value="Cultivated Species">Cultivated Species</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Undescribed">Undescribed</option>
+            </select>
+        </div>
+        @{/* Asp-validation-for used to generate error text */}
+        <label class="mt-md-2 mb-md-1 mt-sm-0 mb-sm-2 col-md-4 col-sm-12 text-danger"><span asp-validation-for="PlantType"></span></label>
+    </div>
+    <div class="row mb-3">
+        <label class="col-md-2 pt-2 form-label" asp-for="Synonym">Synonym</label>
+        <div class="col-md-6">
+            <input asp-for="Synonym" class="form-control" />
+        </div>
+        @{/* Asp-validation-for used to generate error text */}
+        <label class="mt-md-2 mb-md-1 mt-sm-0 mb-sm-2 col-md-4 col-sm-12 text-danger"><span asp-validation-for="Synonym"></span></label>
+    </div>
+    <div class="row mb-3">
+        <label class="col-md-2 pt-2 form-label" asp-for="Distribution">Distribution</label>
+        <div class="col-md-6">
+            <input asp-for="Distribution" class="form-control" />
+        </div>
+        @{/* Asp-validation-for used to generate error text */}
+        <label class="mt-md-2 mb-md-1 mt-sm-0 mb-sm-2 col-md-4 col-sm-12 text-danger"><span asp-validation-for="Distribution"></span></label>
+    </div>
+    <div class="row mb-3">
+        <label class="col-md-2 pt-2 form-label" asp-for="ComplexId">Species Complex</label>
+        <div class="col-md-6">
+            <select asp-for="ComplexId" class="form-select">
+                @foreach (SpeciesComplex complex in ViewBag.Complexes)
+                {
+                    <option value="@complex.ComplexId">@complex.ComplexName</option>
+                }
+            </select>
+        </div>
+        @{/* Asp-validation-for used to generate error text */}
+        <label class="mt-md-2 mb-md-1 mt-sm-0 mb-sm-2 col-md-4 col-sm-12 text-danger"><span asp-validation-for="Complex"></span></label>
+    </div>
+    <div class="row mb-3">
+        <label class="col-md-2 pt-2 form-label" asp-for="AquiredDate">Aquired Date</label>
+        <div class="col-md-6">
+            <input asp-for="AquiredDate" class="form-control" />
+        </div>
+        @{/* Asp-validation-for used to generate error text */}
+        <label class="mt-md-2 mb-md-1 mt-sm-0 mb-sm-2 col-md-4 col-sm-12 text-danger"><span asp-validation-for="AquiredDate"></span></label>
+    </div>
+    <div class="row mb-3">
+        <label class="col-md-2 pt-2 form-label" asp-for="PlantStatus">Status</label>
+        <div class="col-md-6">
+            <select asp-for="PlantStatus" class="form-select">
+                <option value="Healthy">Healthy</option>
+                <option value="Unhealthy">Unhealthy</option>
+                <option value="Dying">Dying</option>
+                <option value="Dead">Dead</option>
+            </select>
+        </div>
+        @{/* Asp-validation-for used to generate error text */}
+        <label class="mt-md-2 mb-md-1 mt-sm-0 mb-sm-2 col-md-4 col-sm-12 text-danger"><span asp-validation-for="PlantStatus"></span></label>
+    </div>
+    <input type="hidden" asp-for="PlantId" />
+    <button class="mt-3 btn btn-secondary" type="submit">Edit</button>
+    <a class="mt-3 btn btn-outline-secondary" asp-controller="Home" asp-action="Index">Cancel</a>
+    
+</form>

@@ -1,0 +1,80 @@
+﻿@{
+    /*
+    * Brett Fowler
+    * Course CPT-231-424 - C# Programming II
+    * Module 12 Assignnent
+    * 2023 Fall
+    */
+}
+
+@model List<Plant>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Botanical Database</h1>
+</div>
+
+
+@* If a successful add/edit/delete message has been passed to TempData, a message displays *@
+@if (TempData.Keys.Contains("message"))
+{
+    <h4 class="bg-success text-center text-white p-2">@TempData["message"]</h4>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Plant ID</th>
+            <th scope="col">Plant Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Synonyms</th>
+            <th scope="col">Distribution</th>
+            <th scope="col">Species Complex</th>
+            <th scope="col">Aquired Date</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Plant plant in Model)
+        {
+            <tr>
+                <td>
+                    @plant.PlantId
+                </td>
+                <td>
+                    @plant.PlantName
+                </td>
+                <td>
+                    @plant.PlantType
+                </td>
+                <td>
+                    @plant.Synonym
+                </td>
+                <td>
+                    @plant.Distribution
+                </td>
+                <td>
+                    @plant.Complex.ComplexName
+                </td>
+                <td>
+                    @plant.AquiredDate
+                </td>
+                <td>
+                    @plant.PlantStatus
+                </td>
+                <td>
+                    <a class="btn btn-secondary btn-sm" asp-controller="Plant" asp-action="Edit" asp-route-id="@plant.PlantId">Edit</a>
+                </td>
+                <td>
+                    <a class="btn btn-secondary btn-sm" asp-controller="Plant" asp-action="Delete" asp-route-id="@plant.PlantId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-outline-secondary" asp-controller="Plant" asp-action="Add">Add</a>

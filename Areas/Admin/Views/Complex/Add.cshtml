@@ -1,0 +1,29 @@
+﻿@{
+     /*
+     * Brett Fowler
+     * Course CPT-231-424 - C# Programming II
+     * Module 12 Assignnent
+     * 2023 Fall
+     */
+}
+
+@model SpeciesComplex
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form class="m-3" asp-action="Add" method="post">
+    <div class="row mb-3">
+        <label class="col-md-2 pt-2 form-label" asp-for="ComplexName">ComplexName</label>
+        <div class="col-md-6">
+            <input class="form-control" asp-for="ComplexName" />
+        </div>
+        @{/* Asp-validation-for used to generate error text */}
+        <label class="mt-md-2 mb-md-1 mt-sm-0 mb-sm-2 col-md-4 col-sm-12 text-danger"><span asp-validation-for="ComplexName"></span></label>
+    </div>
+    <input type="hidden" asp-for="ComplexId" />
+    <button class="mt-3 btn btn-secondary" type="submit">Add</button>
+    <a class="mt-3 btn btn-outline-secondary" asp-controller="Home" asp-action="Complex">Cancel</a>
+
+</form>

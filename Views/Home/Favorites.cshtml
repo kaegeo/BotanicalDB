@@ -1,0 +1,69 @@
+﻿@{
+    /*
+    * Brett Fowler
+    * Course CPT-231-424 - C# Programming II
+    * Module 12 Assignnent
+    * 2023 Fall
+    */
+}
+
+@model List<Plant>
+
+@{
+    ViewData["Title"] = "Favorite Plants";
+}
+
+@{
+    PlantSession plantSession = new PlantSession(Context.Session);
+    List<Plant> plants = plantSession.GetPlants();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Favorite Plants</h1>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Plant ID</th>
+            <th scope="col">Plant Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Synonyms</th>
+            <th scope="col">Distribution</th>
+            @*<th scope="col">Species Complex</th>*@
+            <th scope="col">Aquired Date</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Plant plant in plants)
+        {
+            <tr>
+                <td>
+                    @plant.PlantId
+                </td>
+                <td>
+                    @plant.PlantName
+                </td>
+                <td>
+                    @plant.PlantType
+                </td>
+                <td>
+                    @plant.Synonym
+                </td>
+                <td>
+                    @plant.Distribution
+                </td>
+                @*<td>
+                    @plant.Complex.ComplexName
+                </td>*@
+                <td>
+                    @plant.AquiredDate
+                </td>
+                <td>
+                    @plant.PlantStatus
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
